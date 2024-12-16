@@ -23,6 +23,8 @@ const Home = () => {
     { id: 7, name: "Women Round Neck Cotton Top", price: "$149", img: Person6},
     { id: 8, name: "Men Round Neck Pure Cotton T-shirt", price: "$149", img: Person7 },
     { id: 9, name: "Men Round Neck Pure Cotton T-shirt", price: "$149", img: Person8 },
+    { id: 9, name: "Men Round Neck Pure Cotton T-shirt", price: "$149", img: Person8 },
+
   ];
   return (
     <div>
@@ -48,7 +50,7 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="my-16 font-[Roboto] mx-32">
+      <div className="my-16 font-[Roboto] mx-56">
       {/* Latest Collections */}
       <section>
         <h2 className="text-center text-2xl text-gray-700 font-semibold mb-2">

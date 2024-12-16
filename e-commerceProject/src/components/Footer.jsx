@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div>
       {/* Footer Section */}
-<footer className="p-10 mt-30">
+<footer className="p-10 mt-52 font-outfit">
   <div className="container mx-56 grid grid-cols-1 md:grid-cols-3 gap-8">
     {/* Left Section */}
     <div className="text-left">

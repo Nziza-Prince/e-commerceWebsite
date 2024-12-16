@@ -6,8 +6,8 @@ import { Link, useLocation} from "react-router-dom";
 const Navbar = () => {
   const location = useLocation()
   return (
-    <div className="mx-10">
-      <nav className="flex justify-between  pt-6 pb-5 px-10 font-[Montserrat] font-medium text-sm">
+    <div className="mx-40 pl-5">
+      <nav className="flex justify-between  pt-6 pb-5 px-10 font-outfit font-medium text-sm">
         <Link to="/" className="text-3xl">
           PRINCE
         </Link>
@@ -30,7 +30,7 @@ const Navbar = () => {
           <Link
             to="/collection"
             className={`relative group hover:cursor-pointer ${
-              location.pathname === "/collection"
+              location.pathname.startsWith("collection")
                 ? "text-gray-800 font-semibold"
                 : "text-gray-700"
             }`}
@@ -38,7 +38,7 @@ const Navbar = () => {
             COLLECTION
             <span
               className={`absolute left-1/2 bottom-0 h-0.5 bg-gray-800 transition-all duration-300 transform -translate-x-1/2 ${
-                location.pathname === "/collection"
+                location.pathname.startsWith("/collection")
                   ? "w-full"
                   : "w-0 group-hover:w-full"
               }`}

@@ -27,7 +27,7 @@ import Person29 from '../assets/frontend_assets/p_img26.png'
 import Person31 from '../assets/frontend_assets/p_img27.png'
 import Person32 from '../assets/frontend_assets/p_img28.png'
 import Person33 from '../assets/frontend_assets/p_img29.png'
-const Collection = () => {
+const Collections = () => {
     const products = [
       { id: 1, name: "Women Round Neck Cotton Top", price: "$149", img: Man },
       { id: 2, name: "Women Round Neck Cotton Top", price: "$149", img: Person1 },
@@ -69,7 +69,7 @@ const Collection = () => {
 
       ];
   return (
-    <div className='flex'>
+    <div className='flex font-outfit'>
     <div className="sticky top-0 mx-20 flex flex-col justify-start gap-3 font-outfit mt-[89px]">
     <h1 className="">FILTER</h1>
     <div className="border w-72 py-4 px-5 mb-3">
@@ -141,4 +141,4 @@ const Collection = () => {
   )
 }
 
-export default Collection
+export default Collections

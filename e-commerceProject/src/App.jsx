@@ -2,10 +2,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import Collection from "./pages/Collection";
+import Collections from "./pages/Collections";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer"
+import SingleCollection from "./pages/SingleCollection";
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
       <Routes>
         {/* Define routes for each page */}
         <Route path="/" element={<Home />} />
-        <Route path="/collection" element={<Collection />} />
+        <Route path="/collection" element={<Collections />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/collection/:id" element={<SingleCollection/>}/>
       </Routes>
       <Footer/>
     </Router>
