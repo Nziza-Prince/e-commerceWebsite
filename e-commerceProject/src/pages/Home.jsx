@@ -8,7 +8,6 @@ import Person5 from '../assets/frontend_assets/p_img7.png'
 import Person6 from '../assets/frontend_assets/p_img8.png'
 import Person7 from '../assets/frontend_assets/p_img9.png'
 import Person8 from '../assets/frontend_assets/p_img10.png'
-import Person10 from '../assets/frontend_assets/p_img12.png'
 import Exchange from '../assets/frontend_assets/exchange_icon.png'
 import Quality from '../assets/frontend_assets/quality_icon.png'
 import Support from '../assets/frontend_assets/support_img.png'
@@ -24,11 +23,10 @@ const Home = () => {
     { id: 7, name: "Women Round Neck Cotton Top", price: "$149", img: Person6},
     { id: 8, name: "Men Round Neck Pure Cotton T-shirt", price: "$149", img: Person7 },
     { id: 9, name: "Men Round Neck Pure Cotton T-shirt", price: "$149", img: Person8 },
-    { id: 10, name: "Men Round Neck Pure Cotton T-shirt", price: "$149", img: Person10 },
   ];
   return (
     <div>
-      <div className="mx-20 h-[500px] flex border">
+      <div className="mx-20 h-[500px] flex border font-outfit">
         {/* Left Section */}
         <div className="w-1/2 flex flex-col justify-center pl-20 bg-white">
           <p className="text-sm font-light tracking-widest text-gray-600">
@@ -50,7 +48,7 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="my-16 font- [Roboto] mx-32">
+      <div className="my-16 font-[Roboto] mx-32">
       {/* Latest Collections */}
       <section>
         <h2 className="text-center text-2xl text-gray-700 font-semibold mb-2">

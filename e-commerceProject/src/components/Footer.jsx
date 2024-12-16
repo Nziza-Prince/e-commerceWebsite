@@ -4,8 +4,8 @@ const Footer = () => {
   return (
     <div>
       {/* Footer Section */}
-<footer className="bg-gray-50 p-10">
-  <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer className="p-10 mt-30">
+  <div className="container mx-56 grid grid-cols-1 md:grid-cols-3 gap-8">
     {/* Left Section */}
     <div className="text-left">
       <h2 className="font-bold text-2xl mb-3">PRINCE<span className="text-pink-600">.</span></h2>
