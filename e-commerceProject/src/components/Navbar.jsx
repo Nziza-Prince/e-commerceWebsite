@@ -7,7 +7,7 @@ const Navbar = () => {
   const location = useLocation()
   return (
     <div className="mx-10">
-      <nav className="flex justify-between  pt-6 pb-5 px-10 font-[Montserrat] font-medium">
+      <nav className="flex justify-between  pt-6 pb-5 px-10 font-[Montserrat] font-medium text-sm">
         <Link to="/" className="text-3xl">
           PRINCE
         </Link>

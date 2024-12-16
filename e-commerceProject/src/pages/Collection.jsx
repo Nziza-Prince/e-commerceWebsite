@@ -1,7 +1,9 @@
+
+
 const Collection = () => {
   return (
     <div>
-      Collection page
+      Collection
     </div>
   )
 }
