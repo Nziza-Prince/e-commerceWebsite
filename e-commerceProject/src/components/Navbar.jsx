@@ -1,14 +1,34 @@
+import { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
-import { FaUserAlt } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
-import { Link, useLocation, useNavigate} from "react-router-dom";
+import { FaUserAlt, FaShoppingCart } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Add a scroll event listener to detect scrolling
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="lg:mx-40 pl-5 border-b mb-10">
-      <nav className="flex justify-between  pt-6 pb-5 px-10 font-outfit font-medium text-sm">
+    <div
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white/70 backdrop-blur-md shadow-md" : "bg-white"
+      }`}
+    >
+      <nav className="flex justify-between lg:mx-40 pl-5 pt-6 pb-5 px-10 font-outfit font-medium text-sm border-b">
         <Link to="/" className="text-3xl">
           PRINCE
         </Link>
@@ -83,7 +103,10 @@ const Navbar = () => {
         <div className="flex gap-5 text-xl">
           <CiSearch className="hover:cursor-pointer" />
           <FaUserAlt className="hover:cursor-pointer" />
-          <FaShoppingCart onClick={()=>navigate("/cart")} className="hover:cursor-pointer" />
+          <FaShoppingCart
+            onClick={() => navigate("/cart")}
+            className="hover:cursor-pointer"
+          />
         </div>
       </nav>
     </div>
