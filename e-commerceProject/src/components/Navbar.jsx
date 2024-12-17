@@ -1,12 +1,13 @@
 import { CiSearch } from "react-icons/ci";
 import { FaUserAlt } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link, useLocation} from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   return (
-    <div className="mx-40 pl-5">
+    <div className="lg:mx-40 pl-5 border-b mb-10">
       <nav className="flex justify-between  pt-6 pb-5 px-10 font-outfit font-medium text-sm">
         <Link to="/" className="text-3xl">
           PRINCE
@@ -82,7 +83,7 @@ const Navbar = () => {
         <div className="flex gap-5 text-xl">
           <CiSearch className="hover:cursor-pointer" />
           <FaUserAlt className="hover:cursor-pointer" />
-          <FaShoppingCart className="hover:cursor-pointer" />
+          <FaShoppingCart onClick={()=>navigate("/cart")} className="hover:cursor-pointer" />
         </div>
       </nav>
     </div>

@@ -11,6 +11,7 @@ import Person8 from '../assets/frontend_assets/p_img10.png'
 import Exchange from '../assets/frontend_assets/exchange_icon.png'
 import Quality from '../assets/frontend_assets/quality_icon.png'
 import Support from '../assets/frontend_assets/support_img.png'
+import SubscribePortion from '../components/SubscribePortion';
 
 const Home = () => {
   const products = [
@@ -117,24 +118,7 @@ const Home = () => {
   <p className="font-normal">We offer hassle-free exchange policy</p>
 </div>
     </div>
-    <div className="flex flex-col justify-center items-center mb-20 mx-20 text-center">
-  <h1 className="font-bold text-3xl mb-5 font-[Roboto]">
-    Subscribe now & get 20% off
-  </h1>
-  <p className="text-sm text-gray-400 mb-7">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry
-  </p>
-  <div className="flex items-center">
-    <input
-      type="text"
-      placeholder="Enter your email id"
-      className="border border-gray-300 px-4 py-3 w-[470px] focus:outline-none focus:ring-gray-400"
-    />
-    <button className="bg-black text-white px-5 py-[13px] hover:bg-gray-800 transition">
-      SUBSCRIBE
-    </button>
-  </div>
-</div>
+    <SubscribePortion/>
     </div>
   );
 };
