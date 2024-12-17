@@ -11,6 +11,7 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import MyOrders from "./pages/MyOrders";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signin" element={<Signin/>}/>
          <Route path = "/checkout" element={<CheckoutPage/>}/>
+        <Route path="/myorders" element={<MyOrders/>}/>
       </Routes>
       <Footer/>
     </Router>
