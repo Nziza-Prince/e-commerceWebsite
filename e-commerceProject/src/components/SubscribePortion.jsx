@@ -1,7 +1,7 @@
 const SubscribePortion = () => {
   return (
     <div>
- <div className="flex flex-col justify-center items-center mb-20 mx-20 text-center">
+ <div className="flex flex-col justify-center items-center mb-64 mx-20 text-center">
   <h1 className="font-bold text-3xl mb-5 font-[Roboto]">
     Subscribe now & get 20% off
   </h1>
