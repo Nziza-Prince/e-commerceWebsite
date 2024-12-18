@@ -60,7 +60,7 @@ const SingleCollection = () => {
             </div>
             <span className="ml-3 text-sm text-gray-600">(122)</span>
           </div>
-          <p className="text-lg lg:text-xl font-semibold text-gray-900 mb-4">
+          <p className="text-lg lg:text-3xl font-semibold text-gray-900 mb-4">
             $149
           </p>
           <p className="text-gray-600 text-sm mt-5 mb-8">

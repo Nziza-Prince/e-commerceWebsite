@@ -1,26 +1,31 @@
 const SubscribePortion = () => {
   return (
-    <div>
- <div className="flex flex-col justify-center items-center mb-64 mx-20 text-center">
-  <h1 className="font-bold text-3xl mb-5 font-[Roboto]">
-    Subscribe now & get 20% off
-  </h1>
-  <p className="text-sm text-gray-400 mb-7">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry
-  </p>
-  <div className="flex items-center">
-    <input
-      type="text"
-      placeholder="Enter your email id"
-      className="border border-gray-300 px-4 py-3 w-[470px] focus:outline-none focus:ring-gray-400"
-    />
-    <button className="bg-black text-white px-5 py-[13px] hover:bg-gray-800 transition">
-      SUBSCRIBE
-    </button>
-  </div>
-</div>
-    </div>
-  )
-}
+    <div className="px-4 sm:px-8 lg:px-20 mb-16 lg:mb-32">
+      <div className="flex flex-col justify-center items-center text-center">
+        {/* Heading */}
+        <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl mb-4 font-[Roboto]">
+          Subscribe now & get 20% off
+        </h1>
 
-export default SubscribePortion
+        {/* Subtitle */}
+        <p className="text-sm sm:text-base text-gray-500 mb-6 max-w-lg">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry
+        </p>
+
+        {/* Input and Button */}
+        <div className="flex flex-col sm:flex-row items-center w-full max-w-xl gap-3 sm:gap-0">
+          <input
+            type="text"
+            placeholder="Enter your email id"
+            className="border border-gray-300 px-4 py-2 w-full sm:w-3/4 focus:outline-none "
+          />
+          <button className="bg-black text-white px-6 py-2 w-full sm:w-1/4  hover:bg-gray-800 transition-all duration-300">
+            SUBSCRIBE
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SubscribePortion;

@@ -14,7 +14,7 @@ const About = () => {
           <img
             src={AboutImage}
             alt="Hero Image"
-            className="h-[300px] md:h-[400px] lg:h-[600px] w-full object-cover"
+            className="h-[300px] rounded-lg md:h-[400px] lg:h-[600px] w-full object-cover"
           />
         </div>
 

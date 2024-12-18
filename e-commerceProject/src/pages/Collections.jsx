@@ -128,7 +128,7 @@ const Collections = () => {
               <img
                 src={product.img}
                 alt={product.name}
-                className="w-auto object-cover mb-2"
+                className="w-auto rounded-md object-cover mb-2"
               />
               <p className="text-sm text-gray-800">{product.name}</p>
               <p className="text-sm ">{product.price}</p>
