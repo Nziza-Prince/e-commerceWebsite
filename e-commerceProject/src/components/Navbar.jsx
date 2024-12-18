@@ -2,13 +2,29 @@ import { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaUserAlt, FaShoppingCart } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { assets } from "../assets/frontend_assets/assets";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const navLinks = [
+    { name: "HOME", path: "/" },
+    { name: "COLLECTION", path: "/collection" },
+    { name: "ABOUT", path: "/about" },
+    { name: "CONTACT", path: "/contact" },
+  ];
 
   // Add a scroll event listener to detect scrolling
+  useEffect(() => {
+       if (visible) {
+         document.body.style.overflow = "hidden";
+       } else {
+         document.body.style.overflow = "auto";
+       }
+     }, [visible]);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -17,8 +33,7 @@ const Navbar = () => {
         setIsScrolled(false);
       }
     };
-
-    window.addEventListener("scroll", handleScroll);
+window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -32,74 +47,32 @@ const Navbar = () => {
         <Link to="/" className="text-3xl">
           PRINCE
         </Link>
-        <div className="flex gap-5">
-          <Link
-            to="/"
-            className={`relative group hover:cursor-pointer ${
-              location.pathname === "/"
-                ? "text-gray-800 font-semibold"
-                : "text-gray-700"
-            }`}
-          >
-            HOME
-            <span
-              className={`absolute left-1/2 bottom-0 h-0.5 bg-gray-800 transition-all duration-300 transform -translate-x-1/2 ${
-                location.pathname === "/" ? "w-full" : "w-0 group-hover:w-full"
+
+        {/* Links Container */}
+        <div className={`hidden sm:flex gap-5`}>
+          {navLinks.map((link, index) => (
+            <Link
+              key={index}
+              to={link.path}
+              className={`relative group hover:cursor-pointer ${
+                location.pathname === link.path
+                  ? "text-gray-800"
+                  : "text-gray-700"
               }`}
-            ></span>
-          </Link>
-          <Link
-            to="/collection"
-            className={`relative group hover:cursor-pointer ${
-              location.pathname.startsWith("collection")
-                ? "text-gray-800 font-semibold"
-                : "text-gray-700"
-            }`}
-          >
-            COLLECTION
-            <span
-              className={`absolute left-1/2 bottom-0 h-0.5 bg-gray-800 transition-all duration-300 transform -translate-x-1/2 ${
-                location.pathname.startsWith("/collection")
-                  ? "w-full"
-                  : "w-0 group-hover:w-full"
-              }`}
-            ></span>
-          </Link>
-          <Link
-            to="/about"
-            className={`relative group hover:cursor-pointer ${
-              location.pathname === "/about"
-                ? "text-gray-800 font-semibold"
-                : "text-gray-700"
-            }`}
-          >
-            ABOUT
-            <span
-              className={`absolute left-1/2 bottom-0 h-0.5 bg-gray-800 transition-all duration-300 transform -translate-x-1/2 ${
-                location.pathname === "/about"
-                  ? "w-full"
-                  : "w-0 group-hover:w-full"
-              }`}
-            ></span>
-          </Link>
-          <Link
-            to="/contact"
-            className={`relative group hover:cursor-pointer ${
-              location.pathname === "/contact"
-                ? "text-gray-800 font-semibold"
-                : "text-gray-700"
-            }`}
-          >
-            CONTACT
-            <span
-              className={`absolute left-1/2 bottom-0 h-0.5 bg-gray-800 transition-all duration-300 transform -translate-x-1/2 ${
-                location.pathname === "/contact"
-                  ? "w-full"
-                  : "w-0 group-hover:w-full"
-              }`}
-            ></span>
-          </Link>
+            >
+              {link.name}
+              <span
+                className={`absolute left-1/2 bottom-0 h-0.5 bg-gray-800 transition-all duration-300 transform -translate-x-1/2 ${
+                  location.pathname === link.path
+                    ? "w-full"
+                    : "w-0 group-hover:w-full"
+                }`}
+              ></span>
+            </Link>
+          ))}
         </div>
+
+        {/* Icons and Menu */}
         <div className="flex gap-5 text-xl">
           <CiSearch className="hover:cursor-pointer" />
           <div className="group relative">
@@ -117,9 +90,47 @@ const Navbar = () => {
             onClick={() => navigate("/cart")}
             className="hover:cursor-pointer"
           />
+
+          {/* Menu Icon */}
+          <img
+            onClick={() => setVisible(!visible)} // Toggle visibility
+            src={assets.menu_icon}
+            className="w-5 h-4 cursor-pointer sm:hidden"
+            alt=""
+          />
         </div>
-      </nav>
+
+{/* Slide-In Menu */}
+<div
+  className={`fixed top-0 right-0 h-full p-5 bg-white shadow-lg z-50 transition-all transform ${
+    visible ? "translate-x-0" : "translate-x-full"
+  }`}
+>
+  <div className="flex flex-col text-gray-600">
+    <div onClick={() => setVisible(false)} className="flex cursor-pointer items-center gap-4 p-3">
+      <img src={assets.dropdown_icon} alt="" className="h-4 rotate-180" />
+      <p className="cursor-pointer">Back</p>
     </div>
+  </div>
+  <div className="flex flex-col gap-5 pl-4 py-4">
+    {navLinks.map((link, index) => (
+      <Link
+        key={index}
+        to={link.path}
+        className={`relative group hover:cursor-pointer hover:text-gray-800 ${
+          location.pathname === link.path
+            ? "text-gray-800"
+            : "text-gray-500"
+        }`}
+        onClick={() => setVisible(false)} // Close sidebar when a link is clicked
+      >
+        {link.name}
+      </Link>
+    ))}
+  </div>
+</div>
+</nav>
+</div>
   );
 };
 

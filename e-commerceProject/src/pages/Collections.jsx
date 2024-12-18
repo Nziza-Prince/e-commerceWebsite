@@ -18,7 +18,7 @@ const Collections = () => {
         <h1 className="text-lg font-bold mb-4 ml-3">FILTER</h1>
 
         {/* Category Filter */}
-        <div className="border lg:p-4 md:p-2 mb-4 w-full md:w-32">
+        <div className="border p-3 lg:p-4 md:p-2 mb-4 w-full md:w-32">
           <h1 className="font-[Poppins] text-sm font-semibold mb-3">CATEGORIES</h1>
           {['Men', 'Women', 'Kids'].map((category, index) => (
             <div key={index} className="flex gap-3 lg:mb-2">
@@ -29,7 +29,7 @@ const Collections = () => {
         </div>
 
         {/* Sort By Filter */}
-        <div className="border lg:p-4 md:p-2 mb-4 w-full md:w-32">
+        <div className="border p-3 lg:p-4 md:p-2 mb-4 w-full md:w-32">
           <h1 className="font-[Poppins] text-sm font-semibold mb-2">SORT BY</h1>
           <select
             name="sort-by"
