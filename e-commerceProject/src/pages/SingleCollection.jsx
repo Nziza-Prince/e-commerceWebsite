@@ -25,9 +25,9 @@ const SingleCollection = () => {
       <div className="flex flex-col lg:flex-row gap-10">
         {/* Product Images Section */}
         <div className="lg:w-1/2">
-          <div className="flex gap-3">
+          <div className="flex flex-col lg:flex-row gap-3">
             {/* Thumbnails */}
-            <div className="flex flex-row lg:flex-col md:flex-col md:h-2/4 gap-2">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-1 gap-2">
               {products.map((product, index) => (
                 <img
                   key={index}
@@ -38,17 +38,18 @@ const SingleCollection = () => {
                 />
               ))}
             </div>
+
             <img
               src={mainImage}
               alt="Main Product"
-              className="h-96 w-full lg:h-[550px] lg:w-[500px] md:h-[550px] object-cover mb-4"
+              className="rounded-md h-96 w-full lg:h-[550px] lg:w-[500px] md:h-[550px] object-cover mb-4"
             />
           </div>
         </div>
 
         {/* Product Details Section */}
         <div className="lg:w-1/2">
-          <h1 className="text-2xl lg:text-3xl font-bold mb-2">
+          <h1 className="lg:text-3xl font-bold mb-2">
             Men Round Neck Pure Cotton T-shirt
           </h1>
           <div className="flex items-center mb-4">
@@ -104,7 +105,9 @@ const SingleCollection = () => {
       <div className="mt-16 mb-16">
         <div className="flex">
           <div className="px-6 py-4 border font-semibold">Description</div>
-          <div className="px-6 py-4 border text-gray-600 font-semibold">Reviews (122)</div>
+          <div className="px-6 py-4 border text-gray-600 font-semibold">
+            Reviews (122)
+          </div>
         </div>
         <div className="p-4 lg:p-10 border text-gray-600">
           <p className="mb-4">
@@ -137,7 +140,7 @@ const SingleCollection = () => {
               <img
                 src={product}
                 alt={`Product ${index + 1}`}
-                className="h-96 w-full object-cover"
+                className="lg:h-96 w-full object-cover"
               />
               <div className="mt-2 text-left">
                 <p>Women Round Neck Cotton</p>

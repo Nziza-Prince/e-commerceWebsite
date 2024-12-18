@@ -102,7 +102,17 @@ const Navbar = () => {
         </div>
         <div className="flex gap-5 text-xl">
           <CiSearch className="hover:cursor-pointer" />
-          <FaUserAlt className="hover:cursor-pointer" />
+          <div className="group relative">
+            <FaUserAlt className="hover:cursor-pointer" />
+            <div className="group-hover:block hidden absolute dropdown-menu right-0 mt-1 pt-4">
+              <div className="font-outfit flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500">
+                <p className="hover:text-black cursor-pointer">My Profile</p>
+                <p className="hover:text-black cursor-pointer">Orders</p>
+                <p className="hover:text-black cursor-pointer">Logout</p>
+              </div>
+            </div>
+          </div>
+
           <FaShoppingCart
             onClick={() => navigate("/cart")}
             className="hover:cursor-pointer"

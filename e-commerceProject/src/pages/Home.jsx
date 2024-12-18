@@ -36,11 +36,11 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mt-32 text-center mx-56">
+      <div className="mt-32 text-center lg:mx-56 md:mx-32 sm:mx-20">
         <LatestCollection />
         <BestSeller />
       </div>
-      <div className="flex mx-52 mt-52 mb-64 justify-between">
+      <div className="flex flex-col lg:flex-row lg:mx-52 md:mx-40 gap-10 mt-52 mb-64 justify-between">
         <div className="flex flex-col items-center justify-center text-center">
           <img className="h-10 w-10 mb-2" src={Exchange} alt="" />
           <p className="font-semibold mb-2 text-gray-900">
@@ -56,6 +56,7 @@ const Home = () => {
           </p>
           <p className="font-normal">We offer hassle-free exchange policy</p>
         </div>
+
         <div className="flex flex-col items-center justify-center text-center">
           <img className="h-10 w-10 mb-2" src={Support} alt="" />
           <p className="font-semibold mb-2 text-gray-900">
@@ -64,6 +65,7 @@ const Home = () => {
           <p className="font-normal">We offer hassle-free exchange policy</p>
         </div>
       </div>
+
       <SubscribePortion />
     </div>
   );
