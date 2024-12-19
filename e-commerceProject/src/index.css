@@ -4,3 +4,8 @@
 @tailwind utilities;
 /* Tailwind: For screens smaller than "sm" size, links will be hidden and only the menu icon is shown */
 
+.sidebar {
+    background-color: #ffffff; /* Solid white background */
+    backdrop-filter: none; /* Disable any inherited blur effect */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+  }

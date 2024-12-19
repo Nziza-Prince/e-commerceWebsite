@@ -17,14 +17,7 @@ const Navbar = () => {
     { name: "CONTACT", path: "/contact" },
   ];
 
-  // Add a scroll event listener to detect scrolling
-  useEffect(() => {
-       if (visible) {
-         document.body.style.overflow = "hidden";
-       } else {
-         document.body.style.overflow = "auto";
-       }
-     }, [visible]);
+  // Handle scroll behavior independently
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -33,13 +26,18 @@ const Navbar = () => {
         setIsScrolled(false);
       }
     };
-window.addEventListener("scroll", handleScroll);
+    
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isScrolled]);
 
+  // Disable body scroll when sidebar is visible
+  useEffect(() => {
+visible ?  document.body.style.overflow = "hidden" :  document.body.style.overflow = "auto";
+  },[])
   return (
     <div
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`overflow-hidden sticky top-0 z-50 transition-all duration-300 ${
         isScrolled ? "bg-white/70 backdrop-blur-md shadow-md" : "bg-white"
       }`}
     >
@@ -49,7 +47,7 @@ window.addEventListener("scroll", handleScroll);
         </Link>
 
         {/* Links Container */}
-        <div className={`hidden sm:flex gap-5`}>
+        <div className="hidden sm:flex gap-5">
           {navLinks.map((link, index) => (
             <Link
               key={index}
@@ -93,44 +91,48 @@ window.addEventListener("scroll", handleScroll);
 
           {/* Menu Icon */}
           <img
-            onClick={() => setVisible(!visible)} // Toggle visibility
+            onClick={() => setVisible(!visible)} // Toggle sidebar visibility
             src={assets.menu_icon}
             className="w-5 h-4 cursor-pointer sm:hidden"
-            alt=""
+            alt="menu icon"
           />
         </div>
 
-{/* Slide-In Menu */}
-<div
-  className={`fixed top-0 right-0 h-full p-5 bg-white shadow-lg z-50 transition-all transform ${
-    visible ? "translate-x-0" : "translate-x-full"
-  }`}
->
-  <div className="flex flex-col text-gray-600">
-    <div onClick={() => setVisible(false)} className="flex cursor-pointer items-center gap-4 p-3">
-      <img src={assets.dropdown_icon} alt="" className="h-4 rotate-180" />
-      <p className="cursor-pointer">Back</p>
+        {/* Slide-In Menu */}
+        <div
+          className={`fixed top-0 right-0 h-full w-64 p-5 bg-white shadow-lg z-50 transition-transform transform ${
+            visible ? "translate-x-0" : "translate-x-full"
+          }`}
+          style={{backgroundColor:"white"}}
+        >
+          <div className="flex flex-col text-gray-600">
+            <div
+              onClick={() => setVisible(false)}
+              className="flex cursor-pointer items-center gap-4 p-3"
+            >
+              <img src={assets.dropdown_icon} alt="" className="h-4 rotate-180" />
+              <p>Back</p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-5 pl-4 py-4">
+            {navLinks.map((link, index) => (
+              <Link
+                key={index}
+                to={link.path}
+                className={`relative group hover:cursor-pointer hover:scale-110 transition-all ${
+                  location.pathname === link.path
+                    ? "text-gray-800"
+                    : "text-gray-500"
+                }`}
+                onClick={() => setVisible(false)} // Close sidebar on link click
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </nav>
     </div>
-  </div>
-  <div className="flex flex-col gap-5 pl-4 py-4">
-    {navLinks.map((link, index) => (
-      <Link
-        key={index}
-        to={link.path}
-        className={`relative group hover:cursor-pointer hover:text-gray-800 ${
-          location.pathname === link.path
-            ? "text-gray-800"
-            : "text-gray-500"
-        }`}
-        onClick={() => setVisible(false)} // Close sidebar when a link is clicked
-      >
-        {link.name}
-      </Link>
-    ))}
-  </div>
-</div>
-</nav>
-</div>
   );
 };
 
