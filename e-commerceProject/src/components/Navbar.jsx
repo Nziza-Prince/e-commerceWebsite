@@ -37,7 +37,7 @@ visible ?  document.body.style.overflow = "hidden" :  document.body.style.overfl
   },[])
   return (
     <div
-      className={`overflow-hidden sticky top-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled ? "bg-white/70 backdrop-blur-md shadow-md" : "bg-white"
       }`}
     >
@@ -99,11 +99,11 @@ visible ?  document.body.style.overflow = "hidden" :  document.body.style.overfl
         </div>
 
         {/* Slide-In Menu */}
-        <div
+        {/* <div
           className={`fixed top-0 right-0 h-full w-64 p-5 bg-white shadow-lg z-50 transition-transform transform ${
             visible ? "translate-x-0" : "translate-x-full"
           }`}
-          style={{backgroundColor:"white"}}
+         
         >
           <div className="flex flex-col text-gray-600">
             <div
@@ -130,7 +130,7 @@ visible ?  document.body.style.overflow = "hidden" :  document.body.style.overfl
               </Link>
             ))}
           </div>
-        </div>
+        </div> */}
       </nav>
     </div>
   );

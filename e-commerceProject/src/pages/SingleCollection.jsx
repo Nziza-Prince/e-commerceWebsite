@@ -1,45 +1,41 @@
-import Man2 from "../assets/frontend_assets/p_img12.png";
-import Man52 from "../assets/frontend_assets/p_img52.png";
-import Man51 from "../assets/frontend_assets/p_img51.png";
-import Man50 from "../assets/frontend_assets/p_img50.png";
-import Man40 from "../assets/frontend_assets/p_img40.png";
 import Orange from "../assets/frontend_assets/star_icon.png";
 import dullStar from "../assets/frontend_assets/star_dull_icon.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ShopContext } from "../context/ShopContext";
+import { useParams } from "react-router-dom";
+import ProductComponent from "../components/ProductComponent";
 
 const SingleCollection = () => {
-  const products = [Man2, Man40, Man50, Man51, Man52];
+  const {products} = useContext(ShopContext)
+  const {id} = useParams()
+  const product = products.find((item) => item._id === id);
+  
   const [selectedSize, setSelectedSize] = useState(null); // State to track the selected size
-  const [mainImage, setMainImage] = useState(Man2);
+  const [mainImage, setMainImage] = useState(product.image[0]); // Use `product.image`
+  const relatedProducts = products.filter((item) => item.category === product.category && item._id !== product._id);
 
   const handleSizeClick = (size) => {
     setSelectedSize(size); // Update the selected size
   };
-
-  const handleThumbnailClick = (image) => {
-    setMainImage(image);
-  };
-
   return (
     <div className="container mx-auto p-6 border-t font-outfit">
       <div className="flex flex-col lg:flex-row gap-10">
         {/* Product Images Section */}
         <div className="lg:w-1/2">
-          <div className="flex flex-col lg:flex-row gap-3">
+          <div className="flex flex-col lg:flex-row gap-2">
             {/* Thumbnails */}
             <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-1 gap-2">
-              {products.map((product, index) => (
+              {product.image?.map((img, index) => (
                 <img
                   key={index}
-                  onClick={() => handleThumbnailClick(product)}
-                  src={product}
+                  onClick={() => setMainImage(img)}
+                  src={img}
                   alt={`Thumbnail ${index + 1}`}
                   className="rounded-md hover:scale-105 transition-transform duration-200 h-[103px] w-24 object-cover cursor-pointer"
                 />
               ))}
             </div>
-
-            <img
+             <img
               src={mainImage}
               alt="Main Product"
               className="rounded-md h-96 w-full lg:h-[550px] lg:w-[500px] md:h-[550px] object-cover mb-4"
@@ -50,7 +46,7 @@ const SingleCollection = () => {
         {/* Product Details Section */}
         <div className="lg:w-1/2">
           <h1 className="lg:text-3xl font-bold mb-2">
-            Men Round Neck Pure Cotton T-shirt
+            {product.name}
           </h1>
           <div className="flex items-center mb-4">
             <div className="flex gap-2">
@@ -62,19 +58,18 @@ const SingleCollection = () => {
             <span className="ml-3 text-sm text-gray-600">(122)</span>
           </div>
           <p className="text-lg lg:text-3xl font-semibold text-gray-900 mb-4">
-            $149
+            {product.currency}
+            {product.price}
           </p>
           <p className="text-gray-600 text-sm mt-5 mb-8">
-            A lightweight, usually knitted, pullover shirt, close-fitting and
-            with a round neckline and short sleeves, worn as an undershirt or
-            outer garment.
+{product.description}
           </p>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Select Size
             </label>
             <div className="flex gap-4">
-              {["S", "M", "L", "XL"].map((size) => (
+              {product.sizes.map((size) => (
                 <div
                   key={size}
                   onClick={() => handleSizeClick(size)}
@@ -126,29 +121,20 @@ const SingleCollection = () => {
         </div>
       </div>
 
-      {/* Related Products Section */}
-      <div className="flex flex-col text-center mb-20">
-        <h1 className="text-gray-400 text-2xl lg:text-3xl font-semibold mb-10">
-          RELATED <span className="text-gray-800">PRODUCTS</span>
-        </h1>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-          {products.map((product, index) => (
-            <div
-              key={index}
-              className="shadow-sm hover:shadow-md transition-shadow duration-200"
-            >
-              <img
-                src={product}
-                alt={`Product ${index + 1}`}
-                className="lg:h-96 w-full object-cover"
-              />
-              <div className="mt-2 text-left">
-                <p>Women Round Neck Cotton</p>
-                <p>$149</p>
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Related Images Section */}
+      <div className="mt-16">
+        <h2 className="text-2xl font-semibold mb-4">Related Products</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                        {relatedProducts.map((item, index) => (
+                            <ProductComponent
+                                key={index}
+                                id={item._id}
+                                image={item.image}
+                                name={item.name}
+                                price={item.price}
+                            />
+                     ))}
+          </div>
       </div>
     </div>
   );
