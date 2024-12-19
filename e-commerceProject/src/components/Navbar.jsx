@@ -53,7 +53,7 @@ visible ?  document.body.style.overflow = "hidden" :  document.body.style.overfl
               key={index}
               to={link.path}
               className={`relative group hover:cursor-pointer ${
-                location.pathname === link.path
+                location.pathname === link.path || location.pathname.startsWith("/collection")
                   ? "text-gray-800"
                   : "text-gray-700"
               }`}
@@ -61,7 +61,7 @@ visible ?  document.body.style.overflow = "hidden" :  document.body.style.overfl
               {link.name}
               <span
                 className={`absolute left-1/2 bottom-0 h-0.5 bg-gray-800 transition-all duration-300 transform -translate-x-1/2 ${
-                  location.pathname === link.path
+                  location.pathname === link.path || location.pathname.startsWith("collection")
                     ? "w-full"
                     : "w-0 group-hover:w-full"
                 }`}
