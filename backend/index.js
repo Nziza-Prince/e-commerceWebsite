@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-require("dotenv").config();
+require("dotenv").config({});
 
 const register = require("./auth/register.js");
 const login = require("./auth/login.js");
@@ -20,4 +20,6 @@ app.use("/login", login);
 // Use the todos routes
 
 // Starting the server
-app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`)
+});
