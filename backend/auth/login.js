@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
 
   try {
     // Fetch user from database
-    const userResult = await pool.query("SELECT * FROM users WHERE email=$1", [email]);
+    const userResult = await pool.query("SELECT * FROM customers  WHERE email=$1", [email]);
 
     // Check if user exists
     if (userResult.rows.length === 0) {
