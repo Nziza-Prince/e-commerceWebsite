@@ -5,28 +5,28 @@ import PropTypes from "prop-types";
 export const ShopContext = createContext(); // Create context
 
 const ShopProvider = (props) => {
-  
+
   const [cart, setCart] = useState([]); // State to hold cart items
 
   const currency = "$";
-  const delivery_fee = 10;
+  const delivery_fee = 5;
 
   // Function to add a product to the cart
   const addToCart = (productId, size) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find(
-        (item) => item.id === productId && item.size === size
+        (item) => item._id === productId && item.size === size
       );
       if (existingItem) {
         // If the item already exists with the same size, update the quantity
         return prevCart.map((item) =>
-          item.id === productId && item.size === size
+          item._id === productId && item.size === size
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
       // Add new item to the cart
-      const product = products.find((p) => p.id === productId);
+      const product = products.find((p) => p._id === productId);
       return [...prevCart, { ...product, size, quantity: 1 }];
     });
   };
@@ -35,7 +35,7 @@ const ShopProvider = (props) => {
   // Function to remove a product from the cart
   const removeFromCart = (productId) => {
     setCart((prevCart) =>
-      prevCart.filter((item) => item.id !== productId)
+      prevCart.filter((item) => item._id !== productId)
     );
   };
 
@@ -43,7 +43,7 @@ const ShopProvider = (props) => {
   const updateQuantity = (productId, quantity) => {
     setCart((prevCart) =>
       prevCart.map((item) =>
-        item.id === productId ? { ...item, quantity } : item
+        item._id === productId ? { ...item, quantity } : item
       )
     );
   };

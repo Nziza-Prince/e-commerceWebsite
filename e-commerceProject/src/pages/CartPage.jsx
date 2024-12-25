@@ -17,7 +17,7 @@ const CartPage = () => {
           <div className="lg:col-span-2">
             {cart.length > 0 ? (
               cart.map((item) => (
-                <div key={item.id} className="flex items-center justify-between border p-5 mb-5">
+                <div key={item._id} className="flex items-center justify-between border p-5 mb-5">
                   <div className="flex items-center gap-4">
                     <img
                       src={item.image || "https://via.placeholder.com/100"} // Fallback if no image
@@ -38,12 +38,12 @@ const CartPage = () => {
                       type="number"
                       value={item.quantity}
                       min="1"
-                      onChange={(e) => updateQuantity(item.id, parseInt(e.target.value, 10))}
+                      onChange={(e) => updateQuantity(item._id, parseInt(e.target.value, 10))}
                       className="border p-2 w-16 focus:outline-none"
                     />
                     <button
                       className="text-red-600"
-                      onClick={() => removeFromCart(item.id)}
+                      onClick={() => removeFromCart(item._id)}
                     >
                       🗑
                     </button>
