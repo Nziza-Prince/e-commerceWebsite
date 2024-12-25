@@ -3,8 +3,9 @@ const { Router } = require("express");
 const router = Router();
 const pool = require("../database/databaseConn");
 const jwt = require("jsonwebtoken");
+require('dotenv').config()
 
-const secret = "TopSecret";
+const secret = process.env.JWT_SECRET;
 
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
