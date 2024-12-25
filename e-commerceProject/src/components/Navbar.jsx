@@ -34,6 +34,12 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isScrolled]);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/", { replace: true });
+    window.location.reload(); // Clear any cached data
+};
+
   // Disable body scroll when sidebar is visible
   useEffect(() => {
     visible
@@ -84,9 +90,9 @@ const Navbar = () => {
             <FaUserAlt className="hover:cursor-pointer sm:w-20 md:w-12" />
             <div className="group-hover:block hidden absolute dropdown-menu right-0 mt-1 pt-4">
               <div className="font-outfit flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500">
-                <p className="hover:text-black cursor-pointer">My Profile</p>
-                <p className="hover:text-black cursor-pointer">Orders</p>
-                <p className="hover:text-black cursor-pointer">Logout</p>
+                <a className="hover:text-black cursor-pointer">My Profile</a>
+                <a href="/myorders" className="hover:text-black cursor-pointer">Orders</a>
+                <p onClick={handleLogout} className="hover:text-black cursor-pointer">Logout</p>
               </div>
             </div>
           </div>

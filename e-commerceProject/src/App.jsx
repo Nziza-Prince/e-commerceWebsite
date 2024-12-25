@@ -7,11 +7,13 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer"
 import SingleCollection from "./pages/SingleCollection";
-import Signup from "./pages/Signup";
-import Signin from "./pages/Signin";
+import Signup from "./pages/Auth/Signup";
+import Signin from "./pages/Auth/Signin";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import MyOrders from "./pages/MyOrders";
+import Notification from "./components/Notification";
+import ProtectedRoute from './components/ProtectedRoute'
 
 
 function App() {
@@ -19,18 +21,20 @@ function App() {
     <Router>
       {/* The Navbar is wrapped inside the Router */}
       <Navbar />
+      <Notification/>
       <Routes>
         {/* Define routes for each page */}
-        <Route path="/" element={<Home />} />
-        <Route path="/collection" element={<Collections />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/collection/:id" element={<SingleCollection/>}/>
-        <Route path="/cart" element={<CartPage/>}/>
+        <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path="/collection" element={<ProtectedRoute><Collections /></ProtectedRoute>} />
+        <Route path="/about" element={<ProtectedRoute><About /></ProtectedRoute>} />
+        <Route path="/contact" element={<ProtectedRoute><Contact /></ProtectedRoute>} />
+        <Route path="/collection/:id" element={<ProtectedRoute><SingleCollection/></ProtectedRoute>}/>
+        <Route path="/cart" element={<ProtectedRoute><CartPage/></ProtectedRoute>}/>
         <Route path="/signup" element={<Signup/>}/>
-        <Route path="/signin" element={<Signin/>}/>
-         <Route path = "/checkout" element={<CheckoutPage/>}/>
-        <Route path="/myorders" element={<MyOrders/>}/>
+        <Route path="/" element={<Signin/>}/>
+         <Route path = "/checkout" element={<ProtectedRoute><CheckoutPage/></ProtectedRoute>}/>
+        <Route path="/myorders" element={<ProtectedRoute><MyOrders/></ProtectedRoute>}/>
+        
       </Routes>
       <Footer/>
     </Router>

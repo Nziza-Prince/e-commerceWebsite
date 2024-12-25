@@ -7,6 +7,7 @@ import LatestCollection from "../components/LatestCollection";
 import BestSeller from "../components/BestSeller";
 
 const Home = () => {
+  
   return (
     <div>
       <div className="mx-8 mt-20 md:mx-16 lg:mx-32 h-auto md:h-[600px] flex flex-col md:flex-row border font-outfit">
