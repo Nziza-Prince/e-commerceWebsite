@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import ProductComponent from "../components/ProductComponent";
 
 const SingleCollection = () => {
-  const {products} = useContext(ShopContext)
+  const {products,currency,addToCart} = useContext(ShopContext)
   const {id} = useParams()
   const product = products.find((item) => item._id === id);
   
@@ -17,6 +17,14 @@ const SingleCollection = () => {
   const handleSizeClick = (size) => {
     setSelectedSize(size); // Update the selected size
   };
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      alert("Please select a size before adding to cart.");
+      return;
+    }
+    addToCart(product._id, selectedSize); // Pass both product ID and selected size
+  };
+  
   return (
     <div className="container mx-auto p-6 border-t font-outfit">
       <div className="flex flex-col lg:flex-row gap-10">
@@ -58,11 +66,11 @@ const SingleCollection = () => {
             <span className="ml-3 text-sm text-gray-600">(122)</span>
           </div>
           <p className="text-lg lg:text-3xl font-semibold text-gray-900 mb-4">
-            {product.currency}
+            {currency}
             {product.price}
           </p>
           <p className="text-gray-600 text-sm mt-5 mb-8">
-{product.description}
+   {product.description}
           </p>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -84,7 +92,7 @@ const SingleCollection = () => {
               ))}
             </div>
           </div>
-          <button className="bg-black text-white py-3 px-10 mt-6 w-full lg:w-auto">
+          <button className="bg-black text-white py-3 px-10 mt-6 w-full lg:w-auto" onClick={handleAddToCart}>
             ADD TO CART
           </button>
           <hr className="my-6" />

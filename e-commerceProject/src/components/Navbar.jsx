@@ -1,14 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaUserAlt, FaShoppingCart } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { assets } from "../assets/frontend_assets/assets";
+import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [visible, setVisible] = useState(false);
+  const { cart } = useContext(ShopContext);
+  const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   const navLinks = [
     { name: "HOME", path: "/" },
@@ -26,15 +29,17 @@ const Navbar = () => {
         setIsScrolled(false);
       }
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isScrolled]);
 
   // Disable body scroll when sidebar is visible
   useEffect(() => {
-visible ?  document.body.style.overflow = "hidden" :  document.body.style.overflow = "auto";
-  },[])
+    visible
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }, []);
   return (
     <div
       className={`sticky top-0 z-50 transition-all duration-300 ${
@@ -42,7 +47,7 @@ visible ?  document.body.style.overflow = "hidden" :  document.body.style.overfl
       }`}
     >
       <nav className="flex justify-between lg:mx-40 pl-5 pt-6 pb-5 px-10 font-outfit font-medium text-sm border-b">
-        <Link to="/" className="text-3xl">
+        <Link to="/" className="lg:text-3xl sm:text-xl md:text-2xl">
           PRINCE
         </Link>
 
@@ -53,7 +58,8 @@ visible ?  document.body.style.overflow = "hidden" :  document.body.style.overfl
               key={index}
               to={link.path}
               className={`relative group hover:cursor-pointer ${
-                location.pathname === link.path || location.pathname.startsWith("/collection")
+                location.pathname === link.path ||
+                location.pathname.startsWith("/collection")
                   ? "text-gray-800"
                   : "text-gray-700"
               }`}
@@ -61,7 +67,8 @@ visible ?  document.body.style.overflow = "hidden" :  document.body.style.overfl
               {link.name}
               <span
                 className={`absolute left-1/2 bottom-0 h-0.5 bg-gray-800 transition-all duration-300 transform -translate-x-1/2 ${
-                  location.pathname === link.path || location.pathname.startsWith("collection")
+                  location.pathname === link.path ||
+                  location.pathname.startsWith("collection")
                     ? "w-full"
                     : "w-0 group-hover:w-full"
                 }`}
@@ -74,7 +81,7 @@ visible ?  document.body.style.overflow = "hidden" :  document.body.style.overfl
         <div className="flex gap-5 text-xl">
           <CiSearch className="hover:cursor-pointer" />
           <div className="group relative">
-            <FaUserAlt className="hover:cursor-pointer" />
+            <FaUserAlt className="hover:cursor-pointer sm:w-20 md:w-12" />
             <div className="group-hover:block hidden absolute dropdown-menu right-0 mt-1 pt-4">
               <div className="font-outfit flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500">
                 <p className="hover:text-black cursor-pointer">My Profile</p>
@@ -84,10 +91,18 @@ visible ?  document.body.style.overflow = "hidden" :  document.body.style.overfl
             </div>
           </div>
 
-          <FaShoppingCart
-            onClick={() => navigate("/cart")}
-            className="hover:cursor-pointer"
-          />
+          <div className="relative inline-block">
+            {/* Cart Icon */}
+            <FaShoppingCart
+              onClick={() => navigate("/cart")}
+              className="hover:cursor-pointer text-2xl"
+            />
+
+            {/* Notification Badge */}
+            <span className="absolute bottom-6 right-0 left-5 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">
+              {cartItemCount}
+            </span>
+          </div>
 
           {/* Menu Icon */}
           <img

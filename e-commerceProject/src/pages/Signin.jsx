@@ -20,10 +20,10 @@ const Signin = () => {
         />
         {/* Links Section */}
         <div className="flex w-[500px] justify-between mb-5 text-sm">
-          <Link to="/forgot-password" className="text-blue-500 hover:underline">
+          <Link to="#" className="text-gray-900 hover:underline">
             Forgot password?
           </Link>
-          <Link to="/create-account" className="text-blue-500 hover:underline">
+          <Link to="/signup" className="text-gray-900 hover:underline">
             Create account
           </Link>
         </div>

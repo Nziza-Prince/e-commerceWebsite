@@ -17,9 +17,9 @@ const Footer = () => {
           <div className="text-left sm:ml-20 lg:ml-40">
             <h3 className="font-bold mb-4">COMPANY</h3>
             <ul className="space-y-2 text-gray-600">
-              <li><a href="#" className="hover:underline">Home</a></li>
-              <li><a href="#" className="hover:underline">About us</a></li>
-              <li><a href="#" className="hover:underline">Delivery</a></li>
+              <li><a href="/" className="hover:underline">Home</a></li>
+              <li><a href="/about" className="hover:underline">About us</a></li>
+              <li><a href="/cart" className="hover:underline">Delivery</a></li>
               <li><a href="#" className="hover:underline">Privacy policy</a></li>
             </ul>
           </div>
@@ -27,8 +27,8 @@ const Footer = () => {
           <div className="text-left sm:ml-20 lg:ml-20">
             <h3 className="font-bold mb-4">GET IN TOUCH</h3>
             <ul className="space-y-2 text-gray-600">
-              <li>+1-212-456-7890</li>
-              <li><a href="mailto:greatstackdev@gmail.com" className="hover:underline">greatstackdev@gmail.com</a></li>
+              <li>+250-724-964-936</li>
+              <li><a href="mailto:nzizaprince7@gmail.com" className="hover:underline">nzizaprince7@gmail.com</a></li>
             </ul>
           </div>
         </div>
