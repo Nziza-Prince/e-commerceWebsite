@@ -2,7 +2,7 @@ import { createContext, useState, useMemo } from "react";
 import { products } from "../assets/frontend_assets/assets";
 import PropTypes from "prop-types";
 
-export const ShopContext = createContext(); // Create context
+const ShopContext = createContext(); // Create context
 
 const ShopProvider = (props) => {
 
