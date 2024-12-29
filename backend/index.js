@@ -5,6 +5,7 @@ require("dotenv").config({});
 
 const register = require("./auth/register.js");
 const login = require("./auth/login.js");
+const cartApi = require("./apis/cartApi.js")
 
 
 const port =process.env.PORT || 3000;
@@ -17,6 +18,7 @@ app.use(express.json());
 // Registering the routes
 app.use("/register", register);
 app.use("/login", login);
+app.use("/cart",cartApi)
 // Use the todos routes
 
 // Starting the server
