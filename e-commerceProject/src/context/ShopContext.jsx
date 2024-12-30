@@ -31,7 +31,7 @@ const ShopProvider = (props) => {
     });
   };
   
-
+  
   // Function to remove a product from the cart
   const removeFromCart = (productId) => {
     setCart((prevCart) =>
@@ -59,17 +59,19 @@ const ShopProvider = (props) => {
       (total, item) => total + item.price * item.quantity,
       0
     );
+    setTotalPrice(total);
   }, [cart]);
-
+  
   // Value object for the context
   const value = {
-    products,
-    currency,
-    delivery_fee,
+        products,
+        cart,
+        currency,
+        delivery_fee,
     cart,
-    addToCart,
-    removeFromCart,
-    updateQuantity,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
     clearCart,
     totalPrice,
   };
@@ -82,7 +84,7 @@ const ShopProvider = (props) => {
 };
 
 ShopProvider.propTypes = {
-  children: PropTypes.node.isRequired,
+ children: PropTypes.node.isRequired,
 };
 
 export default ShopProvider; // Export the provider component

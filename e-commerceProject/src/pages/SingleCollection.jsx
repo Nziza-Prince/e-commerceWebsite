@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { useParams } from "react-router-dom";
 import ProductComponent from "../components/ProductComponent";
+import { toast } from "react-toastify";
 
 const SingleCollection = () => {
   const {products,currency,addToCart} = useContext(ShopContext)
@@ -17,12 +18,12 @@ const SingleCollection = () => {
   const handleSizeClick = (size) => {
     setSelectedSize(size); // Update the selected size
   };
-  const handleAddToCart = () => {
+  const handleAddToCart = async() => {
     if (!selectedSize) {
-      alert("Please select a size before adding to cart.");
+      toast.warning("Please select a size before adding to cart.");
       return;
     }
-    addToCart(product._id, selectedSize); // Pass both product ID and selected size
+    await addToCart(product._id, selectedSize); // Pass both product ID and selected size
   };
   
   return (
