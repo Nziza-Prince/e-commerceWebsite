@@ -28,7 +28,7 @@ const About = () => {
           </p>
           <h1 className="font-semibold text-gray-900">Our Mission</h1>
           <p className="text-gray-500">
-            Our mission at Forever is to empower customers with choice, convenience, and confidence. We are dedicated to providing a seamless shopping experience that exceeds expectations, from browsing and ordering to delivery and beyond.
+            Our mission at PRICOM is to empower customers with choice, convenience, and confidence. We are dedicated to providing a seamless shopping experience that exceeds expectations, from browsing and ordering to delivery and beyond.
           </p>
         </div>
       </div>
