@@ -14,7 +14,7 @@ const Navbar = () => {
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   const navLinks = [
-    { name: "HOME", path: "/home" },
+    { name: "HOME", path: "/" },
     { name: "COLLECTION", path: "/collection" },
     { name: "ABOUT", path: "/about" },
     { name: "CONTACT", path: "/contact" },
@@ -36,7 +36,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/", { replace: true });
+    navigate("/signin", { replace: true });
     window.location.reload(); // Clear any cached data
   };
 
