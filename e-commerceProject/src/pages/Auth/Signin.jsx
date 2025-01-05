@@ -15,7 +15,7 @@ const Signin = () => {
   useEffect(()=>{
     const token = localStorage.getItem("token")
     if(token){
-      navigate('/home',{replace:true})
+      navigate('/',{replace:true})
     }
   },[navigate])
 
@@ -27,7 +27,7 @@ const Signin = () => {
       const token = response.data.token
       if(token){
         localStorage.setItem("token",token)  
-        navigate('/home')    
+        navigate('/')    
         toast.success("login Successfull")
         setLoading(false)
       }else{
