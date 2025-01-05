@@ -72,7 +72,7 @@ const Navbar = () => {
               {link.name}
               <span
                 className={`absolute left-1/2 bottom-0 h-0.5 bg-gray-800 transition-all duration-300 transform -translate-x-1/2 ${
-                  location.pathname.startsWith(link.path)
+                  location.pathname === link.path
                     ? "w-full"
                     : "w-0 group-hover:w-full"
                 }`}
