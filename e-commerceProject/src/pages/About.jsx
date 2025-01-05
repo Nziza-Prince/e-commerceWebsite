@@ -21,7 +21,7 @@ const About = () => {
         {/* Right Section for Text */}
         <div className="w-full lg:w-2/5 flex mt-10 lg:mt-20 flex-col gap-6 px-4">
           <p className="text-gray-500">
-            Prince was born out of a passion for innovation and a desire to revolutionize the way people shop online. Our journey began with a simple idea: to provide a platform where customers can easily discover, explore, and purchase a wide range of products from the comfort of their homes.
+            PRICOM was born out of a passion for innovation and a desire to revolutionize the way people shop online. Our journey began with a simple idea: to provide a platform where customers can easily discover, explore, and purchase a wide range of products from the comfort of their homes.
           </p>
           <p className="text-gray-500">
             Since our inception, we have worked tirelessly to curate a diverse selection of high-quality products that cater to every taste and preference. From fashion and beauty to electronics and home essentials, we offer an extensive collection sourced from trusted brands and suppliers.
