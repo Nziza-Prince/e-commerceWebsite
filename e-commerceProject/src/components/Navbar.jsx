@@ -14,7 +14,7 @@ const Navbar = () => {
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   const navLinks = [
-    { name: "HOME", path: "/" },
+    { name: "HOME", path: "/home" },
     { name: "COLLECTION", path: "/collection" },
     { name: "ABOUT", path: "/about" },
     { name: "CONTACT", path: "/contact" },
@@ -64,8 +64,7 @@ const Navbar = () => {
               key={index}
               to={link.path}
               className={`relative group hover:cursor-pointer ${
-                location.pathname === link.path ||
-                location.pathname.startsWith("/collection")
+                location.pathname.startsWith(link.path) 
                   ? "text-gray-800"
                   : "text-gray-700"
               }`}
@@ -73,8 +72,7 @@ const Navbar = () => {
               {link.name}
               <span
                 className={`absolute left-1/2 bottom-0 h-0.5 bg-gray-800 transition-all duration-300 transform -translate-x-1/2 ${
-                  location.pathname === link.path ||
-                  location.pathname.startsWith("collection")
+                  location.pathname.startsWith(link.path)
                     ? "w-full"
                     : "w-0 group-hover:w-full"
                 }`}
