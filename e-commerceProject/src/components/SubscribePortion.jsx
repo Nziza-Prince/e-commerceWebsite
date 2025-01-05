@@ -1,4 +1,9 @@
+import { toast } from "react-toastify";
+
 const SubscribePortion = () => {
+  const handlSubscribe = ()=>{
+    toast.info("Coming Soon")
+  }
   return (
     <div className="px-4 sm:px-8 lg:px-20 mb-16 lg:mb-32">
       <div className="flex flex-col justify-center items-center text-center">
@@ -19,7 +24,7 @@ const SubscribePortion = () => {
             placeholder="Enter your email id"
             className="border border-gray-300 px-4 py-2 w-full sm:w-3/4 focus:outline-none "
           />
-          <button className="bg-black text-white px-6 py-2 w-full sm:w-1/4  hover:bg-gray-800 transition-all duration-300">
+          <button onClick={handlSubscribe} className="bg-black text-white px-6 py-2 w-full sm:w-1/4  hover:bg-gray-800 transition-all duration-300">
             SUBSCRIBE
           </button>
         </div>
