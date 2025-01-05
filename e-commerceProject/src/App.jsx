@@ -24,14 +24,14 @@ function App() {
       <Notification/>
       <Routes>
         {/* Define routes for each page */}
-        <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path="/" element={<Home />} />
         <Route path="/collection" element={<ProtectedRoute><Collections /></ProtectedRoute>} />
         <Route path="/about" element={<ProtectedRoute><About /></ProtectedRoute>} />
         <Route path="/contact" element={<ProtectedRoute><Contact /></ProtectedRoute>} />
         <Route path="/collection/:id" element={<ProtectedRoute><SingleCollection/></ProtectedRoute>}/>
         <Route path="/cart" element={<ProtectedRoute><CartPage/></ProtectedRoute>}/>
         <Route path="/signup" element={<Signup/>}/>
-        <Route path="/" element={<Signin/>}/>
+        <Route path="/signin" element={<Signin/>}/>
          <Route path = "/checkout" element={<ProtectedRoute><CheckoutPage/></ProtectedRoute>}/>
         <Route path="/myorders" element={<ProtectedRoute><MyOrders/></ProtectedRoute>}/>
         
