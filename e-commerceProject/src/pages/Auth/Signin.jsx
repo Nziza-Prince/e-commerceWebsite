@@ -9,6 +9,7 @@ const Signin = () => {
   const [password,setPassword] = useState("")
   const backendUrl = `${import.meta.env.VITE_BACKEND_URL}/login`
   const navigate = useNavigate()
+  const [loading,setLoading] = useState(false)
   // const [showPassword,setShowPassword] = useState("")
 
   useEffect(()=>{
@@ -19,6 +20,7 @@ const Signin = () => {
   },[navigate])
 
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault()
     try{
       const response = await axios.post(backendUrl,{email,password})
@@ -27,12 +29,15 @@ const Signin = () => {
         localStorage.setItem("token",token)  
         navigate('/home')    
         toast.success("login Successfull")
+        setLoading(false)
       }else{
         toast.error("Invalid credentials")
+        setLoading(false)
       }
       }catch(err){
         console.error("Login failed",err)
-        toast.error("Invalid cerdentials")
+        toast.error(err)
+        setLoading(false)
       }
   }
   return (
@@ -66,8 +71,8 @@ const Signin = () => {
             </Link>
           </div>
           {/* Sign In Button */}
-          <button className="bg-black text-white px-10 py-2 hover:bg-gray-900" onClick={handleSubmit}>
-            Sign In
+          <button disabled={loading} className="bg-black text-white px-10 py-2 hover:bg-gray-900" onClick={handleSubmit}>
+          {loading ? <div className='spinner'></div> : "Sign In"}
           </button>
         </div>
       </form>

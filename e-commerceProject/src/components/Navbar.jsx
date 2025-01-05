@@ -38,7 +38,7 @@ const Navbar = () => {
     localStorage.removeItem("token");
     navigate("/", { replace: true });
     window.location.reload(); // Clear any cached data
-};
+  };
 
   // Disable body scroll when sidebar is visible
   useEffect(() => {
@@ -54,7 +54,7 @@ const Navbar = () => {
     >
       <nav className="flex justify-between lg:mx-40 pl-5 pt-6 pb-5 px-10 font-outfit font-medium text-sm border-b">
         <Link to="/" className="lg:text-3xl sm:text-xl md:text-2xl">
-          PRINCE
+          PRICOM
         </Link>
 
         {/* Links Container */}
@@ -91,8 +91,15 @@ const Navbar = () => {
             <div className="group-hover:block hidden absolute dropdown-menu right-0 mt-1 pt-4">
               <div className="font-outfit flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500">
                 <a className="hover:text-black cursor-pointer">My Profile</a>
-                <a href="/myorders" className="hover:text-black cursor-pointer">Orders</a>
-                <p onClick={handleLogout} className="hover:text-black cursor-pointer">Logout</p>
+                <a href="/myorders" className="hover:text-black cursor-pointer">
+                  Orders
+                </a>
+                <p
+                  onClick={handleLogout}
+                  className="hover:text-black cursor-pointer"
+                >
+                  Logout
+                </p>
               </div>
             </div>
           </div>
