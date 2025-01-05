@@ -38,6 +38,8 @@ const Signin = () => {
         console.error("Login failed",err)
         toast.error(err)
         setLoading(false)
+      }finally{
+        setLoading(false)
       }
   }
   return (

@@ -28,8 +28,8 @@ const Signup = () => {
         console.error(err)
         toast.error({message:err.message})
         setLoading(false)
-  
-      })
+  }
+    )
 }
   return (
     <div className="flex flex-col items-center justify-center min-h-screen font-outfit"> {/* Centering the entire page */}
