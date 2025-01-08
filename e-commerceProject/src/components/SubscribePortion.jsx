@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 
 const SubscribePortion = () => {
   const handlSubscribe = ()=>{
-    toast.info("Coming Soon")
+    toast.info("Coming Soon",{autoClose:1200})
   }
   return (
     <div className="px-4 sm:px-8 lg:px-20 mb-16 lg:mb-32">
