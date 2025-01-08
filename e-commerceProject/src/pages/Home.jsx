@@ -5,11 +5,13 @@ import Support from "../assets/frontend_assets/support_img.png";
 import SubscribePortion from "../components/SubscribePortion";
 import LatestCollection from "../components/LatestCollection";
 import BestSeller from "../components/BestSeller";
+import { toast } from "react-toastify";
 
 const Home = () => {
-  
+  const toastify = ()=>toast.error("busted",{autoClose:1200})
   return (
     <div>
+      <button onClick={toastify}>Test the toast</button>
       <div className="mx-8 mt-20 md:mx-16 lg:mx-32 h-auto md:h-[600px] flex flex-col md:flex-row border font-outfit">
         {/* Left Section */}
         <div className="w-full md:w-1/2 flex flex-col justify-center  p-8 md:pl-20 bg-white text-center md:text-left">

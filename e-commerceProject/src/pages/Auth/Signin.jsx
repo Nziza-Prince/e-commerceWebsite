@@ -28,18 +28,16 @@ const Signin = () => {
       if(token){
         localStorage.setItem("token",token)  
         navigate('/')    
-        toast.success("login Successfull")
+        toast.success("login Successfull",{autoClose:1200})
         setLoading(false)
       }else{
-        toast.error("Invalid credentials")
-        setLoading(false)
+        toast.error("Invalid credentials",{autoClose:1200})
+        // setLoading(false)
       }
       }catch(err){
         console.error("Login failed",err)
-        toast.error(err)
-        setLoading(false)
-      }finally{
-        setLoading(false)
+        toast.error(err,{autoClose:1200})
+        // setLoading(false)
       }
   }
   return (

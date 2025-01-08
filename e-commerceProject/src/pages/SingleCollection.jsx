@@ -20,7 +20,7 @@ const SingleCollection = () => {
   };
   const handleAddToCart = async() => {
     if (!selectedSize) {
-      toast.warning("Please select a size before adding to cart.");
+      toast.warning("Please select a size before adding to cart.",{autoClose:1200});
       return;
     }
     await addToCart(product._id, selectedSize); // Pass both product ID and selected size

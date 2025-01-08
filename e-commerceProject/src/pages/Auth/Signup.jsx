@@ -21,12 +21,12 @@ const Signup = () => {
     .then((result)=>{
       navigate("/signin",{replace:true})
       console.log(result)
-      toast.success("Account created successfully")
+      toast.success("Account created successfully",{autoClose:1200})
       setLoading(false)
     })
     .catch((err) =>{
         console.error(err)
-        toast.error({message:err.message})
+        toast.error({message:err.message},{autoClose:1200})
         setLoading(false)
   }
     )
