@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { assets } from "../assets/frontend_assets/assets";
+import { ShopContext } from "../context/ShopContext";
 const CheckoutPage = () => {
+  const {totalPrice,currency,delivery_fee} = useContext(ShopContext)
     return (
       <div className="font-outfit p-5">
         <div className="container mx-auto flex lg:flex-row flex-col lg:gap-6">
@@ -65,15 +68,24 @@ const CheckoutPage = () => {
             </h1>
             <div className="flex justify-between w-full border-b text-gray-500 pb-3">
               <h1>Subtotal</h1>
-              <p>$60000</p>
+              <p>
+                {currency}
+                {totalPrice.toFixed(2)}
+              </p>
             </div>
             <div className="mt-5 flex justify-between w-full border-b text-gray-500 pb-3">
               <h1>Shipping Fee</h1>
-              <p>$10</p>
+              <p>
+                {currency}
+                {delivery_fee.toFixed(2)}
+              </p>
             </div>
             <div className="mt-5 flex justify-between w-full border-b text-gray-500 pb-3">
               <h1>Total</h1>
-              <p>$70000</p>
+              <p>
+                {currency}
+                {(totalPrice + delivery_fee).toFixed(2)}
+              </p>
             </div>
             <button className="w-full bg-black text-white py-2 mt-5 hover:bg-gray-800">
               PLACE ORDER
