@@ -1,4 +1,4 @@
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Notification = () => {
 
@@ -6,6 +6,7 @@ const Notification = () => {
     <div>
       <ToastContainer 
       position="top-right"
+      transition={Zoom}
       />
     </div>
   );
