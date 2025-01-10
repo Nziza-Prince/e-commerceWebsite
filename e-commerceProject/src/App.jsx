@@ -34,8 +34,7 @@ function App() {
         <Route path="/signin" element={<Signin/>}/>
          <Route path = "/checkout" element={<ProtectedRoute><CheckoutPage/></ProtectedRoute>}/>
         <Route path="/myorders" element={<ProtectedRoute><MyOrders/></ProtectedRoute>}/>
-        
-      </Routes>
+        </Routes>
       <Footer/>
     </Router>
   );

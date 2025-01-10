@@ -46,7 +46,7 @@ const Footer = () => {
           <div className="text-left sm:ml-20 lg:ml-20">
             <h3 className="font-bold mb-4">GET IN TOUCH</h3>
             <ul className="space-y-2 text-gray-600">
-              <li>+250-724-964-936</li>
+              <li>+250-781-016-336</li>
               <li>
                 <a
                   href="mailto:nzizaprince7@gmail.com"

@@ -5,7 +5,7 @@ import Support from "../assets/frontend_assets/support_img.png";
 import SubscribePortion from "../components/SubscribePortion";
 import LatestCollection from "../components/LatestCollection";
 import BestSeller from "../components/BestSeller";
-import { toast } from "react-toastify";
+
 
 const Home = () => {
   

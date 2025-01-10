@@ -9,3 +9,6 @@
     backdrop-filter: none; /* Disable any inherited blur effect */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
   }
+  :root{
+    --toastify-toast-width: 20px;
+  }
