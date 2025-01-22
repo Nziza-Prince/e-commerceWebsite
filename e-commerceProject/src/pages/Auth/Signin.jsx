@@ -32,12 +32,14 @@ const Signin = () => {
         setLoading(false)
       }else{
         toast.error("Invalid credentials",{autoClose:1200})
-        // setLoading(false)
+        setLoading(false)
       }
       }catch(err){
         console.error("Login failed",err)
         toast.error(err,{autoClose:1200})
-        // setLoading(false)
+        setLoading(false)
+      }finally{
+        setLoading(false)
       }
   }
   return (
