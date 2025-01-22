@@ -8,7 +8,7 @@ import { ShopContext } from "../context/ShopContext";
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isScrolled, setIsScrolled] = useState(false);
+
   const [visible, setVisible] = useState(false);
   const { cart } = useContext(ShopContext);
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
@@ -20,19 +20,8 @@ const Navbar = () => {
     { name: "CONTACT", path: "/contact" },
   ];
 
-  // Handle scroll behavior independently
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+  // Handle scroll behavior
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isScrolled]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -40,19 +29,17 @@ const Navbar = () => {
     window.location.reload(); // Clear any cached data
   };
 
-  // Disable body scroll when sidebar is visible
   useEffect(() => {
     visible
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "auto");
-  }, []);
+  }, [visible]);
+
   return (
     <div
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/70 backdrop-blur-md shadow-md" : "bg-white"
-      }`}
+      className={`sticky top-0 z-50 transition-all duration-300 bg-white/70`}
     >
-      <nav className="flex justify-between lg:mx-40 pl-5 pt-6 pb-5 px-10 font-outfit font-medium text-sm border-b">
+      <nav className="flex justify-between items-center lg:mx-40 pl-5 pt-6 pb-5 px-10 font-outfit font-medium text-sm border-b">
         <Link to="/" className="lg:text-3xl sm:text-xl md:text-2xl">
           PRICOM
         </Link>
@@ -63,8 +50,8 @@ const Navbar = () => {
             <Link
               key={index}
               to={link.path}
-              className={`relative group hover:cursor-pointer ${
-                location.pathname.startsWith(link.path) 
+              className={`relative group ${
+                location.pathname.startsWith(link.path)
                   ? "text-gray-800"
                   : "text-gray-700"
               }`}
@@ -81,7 +68,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Icons and Menu */}
+        {/* Icons and Mobile Menu Toggle */}
         <div className="flex gap-5 text-xl">
           <CiSearch className="hover:cursor-pointer" />
           <div className="group relative">
@@ -103,60 +90,57 @@ const Navbar = () => {
           </div>
 
           <div className="relative inline-block">
-            {/* Cart Icon */}
             <FaShoppingCart
               onClick={() => navigate("/cart")}
               className="hover:cursor-pointer text-2xl"
             />
-
-            {/* Notification Badge */}
             <span className="absolute bottom-6 right-0 left-5 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">
               {cartItemCount}
             </span>
           </div>
 
-          {/* Menu Icon */}
           <img
-            onClick={() => setVisible(!visible)} // Toggle sidebar visibility
+            onClick={() => setVisible(!visible)}
             src={assets.menu_icon}
             className="w-5 h-4 cursor-pointer sm:hidden"
             alt="menu icon"
           />
         </div>
 
-        {/* Slide-In Menu */}
-        {/* <div
-          className={`fixed top-0 right-0 h-full w-64 p-5 bg-white shadow-lg z-50 transition-transform transform ${
+        {/* Mobile Menu */}
+        <div
+          className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transition-transform transform ${
             visible ? "translate-x-0" : "translate-x-full"
           }`}
-         
         >
-          <div className="flex flex-col text-gray-600">
+          <div className="flex flex-col p-5 text-gray-600">
             <div
               onClick={() => setVisible(false)}
               className="flex cursor-pointer items-center gap-4 p-3"
             >
-              <img src={assets.dropdown_icon} alt="" className="h-4 rotate-180" />
-              <p>Back</p>
+              <img
+                src={assets.dropdown_icon}
+                alt="close menu"
+                className="h-4 rotate-180"
+              />
+              <p>Close</p>
             </div>
-          </div>
-          <div className="flex flex-col gap-5 pl-4 py-4">
             {navLinks.map((link, index) => (
               <Link
                 key={index}
                 to={link.path}
-                className={`relative group hover:cursor-pointer hover:scale-110 transition-all ${
+                className={`py-2 ${
                   location.pathname === link.path
                     ? "text-gray-800"
                     : "text-gray-500"
                 }`}
-                onClick={() => setVisible(false)} // Close sidebar on link click
+                onClick={() => setVisible(false)}
               >
                 {link.name}
               </Link>
             ))}
           </div>
-        </div> */}
+        </div>
       </nav>
     </div>
   );

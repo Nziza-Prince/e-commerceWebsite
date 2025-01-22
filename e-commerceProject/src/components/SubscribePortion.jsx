@@ -1,11 +1,36 @@
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 const SubscribePortion = () => {
   const handlSubscribe = ()=>{
     toast.info("Coming Soon",{autoClose:1200})
   }
+      const [isPotionVisible, setPotionVisible] = useState(false);
+      const potionRef = useRef(null);
+    
+      useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const [entry] = entries;
+            setPotionVisible(entry.isIntersecting);
+          },
+          { threshold: 0.2 }
+        );
+    
+        if (potionRef.current) {
+          observer.observe(potionRef.current);
+        }
+    
+        return () => {
+          if (potionRef.current) observer.unobserve(potionRef.current);
+        };
+      }, []);
   return (
-    <div className="px-4 sm:px-8 lg:px-20 mb-16 lg:mb-32">
+    <div 
+    ref={potionRef}
+    className={`px-4 sm:px-8 lg:px-20 mb-16 lg:mb-32 transition-opacity duration-1000 ${
+          isPotionVisible ? "opacity-100" : "opacity-0"
+        }`}>
       <div className="flex flex-col justify-center items-center text-center">
         {/* Heading */}
         <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl mb-4 font-[Roboto]">

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "./Title";
 import ProductComponent from "./ProductComponent";
@@ -7,12 +7,35 @@ import { useState } from "react";
 const LatestCollection = () => {
     const { products } = useContext(ShopContext);
     const [latestProducts, setLatestProducts] = useState([]);
-
+       const [isPotionVisible, setPotionVisible] = useState(false);
+       const potionRef = useRef(null);
+     
+       useEffect(() => {
+         const observer = new IntersectionObserver(
+           (entries) => {
+             const [entry] = entries;
+             setPotionVisible(entry.isIntersecting);
+           },
+           { threshold: 0.2 }
+         );
+     
+         if (potionRef.current) {
+           observer.observe(potionRef.current);
+         }
+     
+         return () => {
+           if (potionRef.current) observer.unobserve(potionRef.current);
+         };
+       }, []);
     useEffect(() => {
         setLatestProducts(products.slice(0, 10));
     }, [products]);
     return (
-        <div>
+        <div
+        ref={potionRef}
+         className={`transition-opacity duration-1000 ${
+          isPotionVisible ? "opacity-100" : "opacity-0"
+        }`}>
             {/* Latest Collections */}
             <section>
                 <Title text1={"LATEST"} text2={"COLLECTION"} />
