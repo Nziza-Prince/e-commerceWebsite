@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useRef } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import Title from '../components/Title';
 import ProductComponent from '../components/ProductComponent';
@@ -8,6 +8,8 @@ const Collections = () => {
   const [collectionProducts, setCollectionProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [sortOption, setSortOption] = useState('');
+  const [visibleIndexes, setVisibleIndexes] = useState(new Set());
+  const observerRef = useRef(null);
 
   useEffect(() => {
     setCollectionProducts(products);
@@ -49,8 +51,31 @@ const Collections = () => {
     setCollectionProducts(filteredProducts);
   }, [selectedCategories, products]);
 
+  // Intersection Observer for Lazy Loading
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleIndexes((prev) => new Set([...prev, parseInt(entry.target.dataset.index, 10)]));
+          }
+        });
+      },
+      { threshold: 0.1 } // Adjust threshold as needed
+    );
+
+    const productElements = document.querySelectorAll('.product-row');
+    productElements.forEach((element) => observerRef.current.observe(element));
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [collectionProducts]);
+
   return (
-    <div className='flex flex-col md:flex-row font-outfit'>
+    <div className="flex flex-col md:flex-row font-outfit">
       {/* Filters Section */}
       <div className="mx-4 md:mx-16 flex flex-col justify-start gap-3 font-outfit mt-[89px] mb-8 md:mb-0">
         <h1 className="text-lg font-bold mb-4 ml-3">FILTER</h1>
@@ -97,13 +122,20 @@ const Collections = () => {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {collectionProducts.map((item, index) => (
-              <ProductComponent
+              <div
                 key={index}
-                id={item._id}
-                image={item.image}
-                name={item.name}
-                price={item.price}
-              />
+                data-index={index}
+                className={`product-row transition-opacity duration-500 ease-in-out ${
+                  visibleIndexes.has(index) ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                <ProductComponent
+                  id={item._id}
+                  image={item.image}
+                  name={item.name}
+                  price={item.price}
+                />
+              </div>
             ))}
           </div>
         </section>
