@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "./Title";
 import ProductComponent from "./ProductComponent";
@@ -6,13 +6,37 @@ import ProductComponent from "./ProductComponent";
 const BestSeller = () => {
   const { products } = useContext(ShopContext);
   const [bestSeller, setbestSeller] = useState([]);
+    const [isPotionVisible, setPotionVisible] = useState(false);
+    const potionRef = useRef(null);
+  
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+          setPotionVisible(entry.isIntersecting);
+        },
+        { threshold: 0.2 }
+      );
+  
+      if (potionRef.current) {
+        observer.observe(potionRef.current);
+      }
+  
+      return () => {
+        if (potionRef.current) observer.unobserve(potionRef.current);
+      };
+    }, []);
 
   useEffect(() => {
     const bestSellers = products.filter((item) => (item.bestseller));
     setbestSeller(bestSellers);
   },[products]);
   return (
-    <div>
+    <div 
+    ref={potionRef}
+    className={`transition-opacity duration-1000 ${
+          isPotionVisible ? "opacity-100" : "opacity-0"
+        }`}>
       {/* Best Seller */}
       <section className="mt-20">
         <Title text1={"BEST"} text2={"SELLER"} />
