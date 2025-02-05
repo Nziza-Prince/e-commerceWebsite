@@ -1,20 +1,19 @@
-const { Pool } = require('pg');
+const { createClient } = require('@supabase/supabase-js');
 require('dotenv').config()
+// Supabase credentials
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_API_KEY;
 
-const pool = new Pool({
-    connectionString: process.env.DB_URL, // Use the connection URL from the environment variable
-    ssl: {
-       rejectUnauthorized: false, // Necessary for secure connections with certain managed services like Render
-    }
- });
+// Create Supabase client
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-pool.connect()
-    .then(client => {
-        console.log("Db connected successfully");
-        client.release();
-    })
-    .catch(err => {
-        console.error("Db connection failed", err);
-    });
-
-module.exports = pool;
+// Query data from a table
+(async () => {
+  const { data, error } = await supabase.from('customers').select('*');
+  if (error) {
+    console.error('Error fetching data:', error);
+  } else {
+    console.log("Connected Successfully");
+  }
+})();
+module.exports = supabase;
