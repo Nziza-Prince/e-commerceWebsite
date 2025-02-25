@@ -1,8 +1,12 @@
 import { useContext } from "react";
 import { assets } from "../assets/frontend_assets/assets";
 import { ShopContext } from "../context/ShopContext";
+import { toast } from "react-toastify";
 const CheckoutPage = () => {
   const {totalPrice,currency,delivery_fee} = useContext(ShopContext)
+  const handleCheckout = ()=>{
+    toast.info("Coming soon",{autoClose:1200})
+  }
     return (
       <div className="font-outfit p-5">
         <div className="container mx-auto flex lg:flex-row flex-col lg:gap-6">
@@ -87,7 +91,7 @@ const CheckoutPage = () => {
                 {(totalPrice + delivery_fee).toFixed(2)}
               </p>
             </div>
-            <button className="w-full bg-black text-white py-2 mt-5 hover:bg-gray-800">
+            <button className="w-full bg-black text-white py-2 mt-5 hover:bg-gray-800" onClick={handleCheckout}>
               PLACE ORDER
             </button>
             <h1 className="mt-16 text-2xl text-gray-500 font-light tracking-wide mb-3">
